@@ -20,11 +20,15 @@ driver.get(base_url)
 driver.maximize_window()
 
 # Находим и активируем чек-бокс
-check_box = driver.find_element(By.XPATH, "//span[@class='rct-checkbox']")
-check_box.click()
+driver.find_element(By.XPATH, "//span[@class='rct-checkbox']").click()
+print("Click Check box")
 
 # Проверяем, что чекбокс активирован (выбран).
-assert check_box.is_selected(), "Error: checkbox isn't selected"
+state_of_check_box = driver.find_element(
+    By.XPATH,
+    "//input[@id='tree-node-home']"
+).is_selected()
+assert state_of_check_box, "Error: checkbox isn't selected"
 print("Check Box is selected")
 
 # Задержка 5 секунд и закрытие браузера
